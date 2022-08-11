@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" type="text/html" href="/templates/css/styles.css">
+    </head>
+    <body>
+        <nav id="nav">
+        </nav>
+        <section id="section">
+            <h2> Registro Jornada {{ p.email }}</h2>
+
+            <form action="registrar_jornada" method="GET">
+                {% csrf_token %}
+                Start: {{ registro_inicio }}
+                <br>
+                <input type="datetime-local" name="registro_inicio">
+                <input type="submit" name="registrar_jornada">
+            </form>
+            <br>
+            <form action="finalizar_jornada" method="GET">
+                {% csrf_token %}
+                 End: {{ registro_fin }}
+                 <br>
+                <input type="datetime-local" name="registro_fin">
+                <input type="submit" name="finalizar_jornada">
+            </form>
+            <br>
+            <p>
+                {% if registro_fin %}
+                    Jornada finalizada
+                {% else %}
+                    Jornada Actual: {{ contador_jornada }}
+                {% endif %}
+            <p/>
+        </section>
+        <footer id="footer">
+        </footer>
+    </body>
+</html>
